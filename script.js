@@ -12,11 +12,18 @@ resizeBtn.textContent = "Resize Grid";
 btnContainer.appendChild(resizeBtn);
 resizeBtn.classList.add("btn");
 
-function drawGrid() {
-	for (let i = 0; i < 256; i++) {
+let size = 16;
+let gridSize = size * size;
+
+function drawGrid(gridSize, size) {
+	container.style.width = `${size * 20}px`;
+	let num = container.style.height = `${size * 20}px`;
+	console.log(num);
+
+	for (let i = 0; i < gridSize; i++) {
 		const temp = document.createElement("div");
 		temp.classList.add("grid");
-		temp.setAttribute("style", "border: 2px solid black; width: 20px; height: 20px");
+		temp.setAttribute("style", "background-color: white; border: 2px solid black; width: 20px; height: 20px");
 		container.appendChild(temp);
 		temp.addEventListener("mouseover", () => {
 			temp.style.backgroundColor = "black";
@@ -31,4 +38,14 @@ clearBtn.addEventListener("click", () => {
 	});
 });
 
-drawGrid();
+drawGrid(gridSize, size);
+
+resizeBtn.addEventListener("click", () => {
+	const newSize = prompt("Enter the size of the new grid (up to 100): ");
+	const oldGrid = document.querySelectorAll(".grid");
+	oldGrid.forEach(box => {
+		box.remove();
+	});
+	const newGridSize = newSize * newSize;
+	drawGrid(newGridSize, newSize);
+});

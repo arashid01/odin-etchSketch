@@ -7,9 +7,8 @@
 .container {
 	display: flex;
 	flex-wrap: wrap;
-	width: 400px;
-	height: 400px;
 	margin-top: 60px;
+	margin-bottom: 40px;
 }
 
 .btnContainer {
@@ -36,4 +35,8 @@ body {
 
 h1 {
 	color: white;
+}
+
+.grid {
+	box-sizing: border-box;
 }
