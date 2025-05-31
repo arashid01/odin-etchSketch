@@ -18,7 +18,12 @@ let gridSize = size * size;
 function drawGrid(gridSize, size) {
 	container.style.width = `${size * 20}px`;
 	let num = container.style.height = `${size * 20}px`;
-	console.log(num);
+	let isDrawing = false;
+	document.addEventListener("mousedown", () => isDrawing = true);
+	document.addEventListener("mouseup", () => isDrawing = false);
+	function randomNum(num) {
+		return (Math.floor(Math.random() * num));
+	}
 
 	for (let i = 0; i < gridSize; i++) {
 		const temp = document.createElement("div");
@@ -26,7 +31,9 @@ function drawGrid(gridSize, size) {
 		temp.setAttribute("style", "background-color: white; border: 2px solid black; width: 20px; height: 20px");
 		container.appendChild(temp);
 		temp.addEventListener("mouseover", () => {
-			temp.style.backgroundColor = "black";
+			if (isDrawing) {
+				temp.style.backgroundColor = `rgb(${randomNum(256)}, ${randomNum(256)}, ${randomNum(256)})`;
+			}
 		});
 	}
 }
